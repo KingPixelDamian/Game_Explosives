@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/7884.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.52753, 6.32133 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 210 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "muerte"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 216, 217, 218, 219, 220 ]
+}
+
+[node name="Enemigo" type="Node2D" groups=[
+"enemy",
+]]
+editor/display_folded = true
+position = Vector2( -0.527039, -15.0207 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( -0.263519, -0.527039 )
+script = ExtResource( 1 )
+vel_mov = 10.0
+probabilidad_mov = 70
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+texture = ExtResource( 2 )
+vframes = 24
+hframes = 14
+frame = 212
+
+[node name="Abajo" type="RayCast2D" parent="KinematicBody2D"]
+
+[node name="Arriba" type="RayCast2D" parent="KinematicBody2D"]
+rotation = 3.14159
+
+[node name="Derecha" type="RayCast2D" parent="KinematicBody2D"]
+rotation = 4.71239
+
+[node name="Izquierda" type="RayCast2D" parent="KinematicBody2D"]
+rotation = 1.5708
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
+anims/idle = SubResource( 3 )
+anims/muerte = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="KinematicBody2D"]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="animation_finished" from="KinematicBody2D/AnimationPlayer" to="KinematicBody2D" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="KinematicBody2D/Timer" to="KinematicBody2D" method="_on_Timer_timeout"]

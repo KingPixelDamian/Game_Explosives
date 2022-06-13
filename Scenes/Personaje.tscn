@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/player.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/7884.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.468, 3.80296 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "muerte"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31, 32, 33, 34 ]
+}
+
+[node name="Personaje" type="Node2D"]
+position = Vector2( -231.108, -54.5291 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." groups=[
+"player",
+]]
+script = ExtResource( 1 )
+vel_mov = 60.0
+
+[node name="cam" type="Camera2D" parent="KinematicBody2D"]
+position = Vector2( -2.86172, -119.415 )
+current = true
+zoom = Vector2( 0.3, 0.35 )
+limit_left = -255
+limit_top = -105
+limit_right = 250
+limit_bottom = 105
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+texture = ExtResource( 2 )
+vframes = 24
+hframes = 14
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( -1.03239, 4.07422 )
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="KinematicBody2D"]
+wait_time = 0.1
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
+anims/idle = SubResource( 2 )
+anims/muerte = SubResource( 3 )
+
+[node name="c" type="Position2D" parent="KinematicBody2D"]
+position = Vector2( -1.31761, -0.527039 )
+
+[connection signal="timeout" from="KinematicBody2D/Timer" to="KinematicBody2D" method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="KinematicBody2D/AnimationPlayer" to="KinematicBody2D" method="_on_AnimationPlayer_animation_finished"]

@@ -1,0 +1,432 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Scenes/main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Personaje.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/bomba.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/expansion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/expansion_f.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/bombas.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/expansor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/item.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Enemigo.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Texturas/109160.png" type="Texture" id=10]
+[ext_resource path="res://Fuente/8-BIT WONDER.TTF" type="DynamicFontData" id=11]
+[ext_resource path="res://BGM/3 - Track 3.ogg" type="AudioStream" id=12]
+[ext_resource path="res://BGM/4 - Track 4.ogg" type="AudioStream" id=13]
+[ext_resource path="res://BGM/5 - Track 5.ogg" type="AudioStream" id=14]
+[ext_resource path="res://SFX/SFX 1.ogg" type="AudioStream" id=15]
+[ext_resource path="res://SFX/SFX 2.ogg" type="AudioStream" id=16]
+[ext_resource path="res://SFX/SFX 3.ogg" type="AudioStream" id=17]
+[ext_resource path="res://SFX/SFX 4.ogg" type="AudioStream" id=18]
+[ext_resource path="res://SFX/SFX 5.ogg" type="AudioStream" id=19]
+[ext_resource path="res://SFX/SFX 6.ogg" type="AudioStream" id=20]
+[ext_resource path="res://SFX/SFX 7.ogg" type="AudioStream" id=21]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.82632, 7.96155 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 18
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+font_data = ExtResource( 11 )
+
+[node name="main" type="Node2D" groups=["main"]]
+script = ExtResource( 1 )
+player = ExtResource( 2 )
+bomba = ExtResource( 3 )
+expansion = ExtResource( 4 )
+expansion_f = ExtResource( 5 )
+item_bomb = ExtResource( 6 )
+item_expansion = ExtResource( 7 )
+item_puerta = ExtResource( 8 )
+enemy1 = ExtResource( 9 )
+
+[node name="base_tablero" type="Node2D" parent="."]
+position = Vector2( -8, 0 )
+
+[node name="tablero" type="StaticBody2D" parent="base_tablero" groups=["pared", "wall"]]
+
+[node name="Sprite" type="Sprite" parent="base_tablero/tablero"]
+position = Vector2( 0, -0.32354 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 1, -1.45, 497, 209.83 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="base_tablero/tablero"]
+polygon = PoolVector2Array( -233.558, -87.1316, -233.558, 87.9, 247.737, 88.5471, 247.737, 104.077, -248.518, 104.077, -248.518, -104.926, 247.196, -104.926, 247.844, 87.5765, 230.696, 88.5471, 230.529, -87.4552 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="base_tablero/tablero"]
+polygon = PoolVector2Array( -217.369, -71.2785, -217.369, -56.396, -202.163, -56.396, -202.163, -71.602 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -177.821, -63.9456 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -178.113, -32.1188 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D30" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -178.351, -0.249985 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D44" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -177.638, 32.0945 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D58" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -178.351, 64.2011 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -49.3461, -64.2376 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -49.6381, -32.4108 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D34" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -49.8759, -0.541977 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D48" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -49.1624, 31.8025 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D62" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -49.8759, 63.9091 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 110.664, -63.946 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 110.372, -32.1192 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D39" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 110.134, -0.250381 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D53" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 110.848, 32.0941 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D67" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 110.134, 64.2007 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -113.584, -64.2376 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -113.876, -32.4108 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D32" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -114.114, -0.541977 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D46" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -113.4, 31.8025 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D60" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -114.114, 63.9091 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 14.8914, -64.5296 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 14.5995, -32.7028 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D36" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 14.3616, -0.833969 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D50" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 15.0751, 31.5105 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D64" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 14.3616, 63.6171 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 174.901, -63.946 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 174.609, -32.1192 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D41" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 174.372, -0.250381 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D55" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 175.085, 32.0941 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D69" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 174.372, 64.2007 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -145.995, -63.9456 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -146.286, -32.1188 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D31" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -146.524, -0.249985 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D45" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -145.811, 32.0945 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D59" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -146.524, 64.2011 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -17.5193, -64.2376 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -17.8113, -32.4108 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D35" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -18.0491, -0.541977 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D49" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -17.3356, 31.8025 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D63" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -18.0491, 63.9091 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 142.491, -63.946 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D24" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 142.199, -32.1192 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D40" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 141.961, -0.250381 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D54" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 142.674, 32.0941 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D68" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 141.961, 64.2007 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -81.7569, -64.2376 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -82.0489, -32.4108 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D33" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -82.2867, -0.541977 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D47" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -81.5733, 31.8025 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D61" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -82.2868, 63.9091 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 78.2531, -63.946 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 77.9611, -32.1192 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D38" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 77.7233, -0.250381 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D52" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 78.4368, 32.0941 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D66" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 77.7233, 64.2007 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 46.7183, -64.5296 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 46.4263, -32.7028 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D37" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 46.1885, -0.833969 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D51" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 46.9019, 31.5105 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D65" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 46.1885, 63.6171 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 206.728, -63.946 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D26" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 206.436, -32.1192 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D28" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 206.198, -0.250381 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D42" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 206.912, 32.0941 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D56" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( 206.198, 64.2007 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D27" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -209.94, -32.1188 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D29" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -210.178, -0.249985 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D43" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -209.464, 32.0945 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D57" type="CollisionShape2D" parent="base_tablero/tablero"]
+position = Vector2( -210.178, 64.2011 )
+shape = SubResource( 1 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="txt_vidas" type="Label" parent="GUI"]
+margin_left = 40.6982
+margin_top = 16.5808
+margin_right = 112.698
+margin_bottom = 32.5808
+custom_fonts/font = SubResource( 2 )
+text = "VIDAS:"
+
+[node name="vidas" type="Label" parent="GUI" groups=["vidas"]]
+margin_left = 134.154
+margin_top = 16.581
+margin_right = 174.154
+margin_bottom = 34.581
+custom_fonts/font = SubResource( 3 )
+
+[node name="txt_enemigos" type="Label" parent="GUI"]
+margin_left = 776.281
+margin_top = 16.581
+margin_right = 920.281
+margin_bottom = 34.581
+custom_fonts/font = SubResource( 4 )
+text = "ENEMIGOS"
+
+[node name="enemigos" type="Label" parent="GUI" groups=["enemigos"]]
+margin_left = 933.045
+margin_top = 16.581
+margin_right = 973.045
+margin_bottom = 34.581
+custom_fonts/font = SubResource( 3 )
+
+[node name="txt_tiempo" type="Label" parent="GUI"]
+margin_left = 399.446
+margin_top = 16.581
+margin_right = 507.446
+margin_bottom = 34.581
+custom_fonts/font = SubResource( 5 )
+text = "TIEMPO"
+
+[node name="tiempo" type="Label" parent="GUI" groups=["tiempo"]]
+margin_left = 527.57
+margin_top = 16.581
+margin_right = 567.57
+margin_bottom = 34.581
+custom_fonts/font = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="BGM" type="Node2D" parent="." groups=["bgm"]]
+
+[node name="1" type="AudioStreamPlayer2D" parent="BGM"]
+stream = ExtResource( 12 )
+
+[node name="2" type="AudioStreamPlayer2D" parent="BGM"]
+stream = ExtResource( 13 )
+
+[node name="3" type="AudioStreamPlayer2D" parent="BGM"]
+stream = ExtResource( 14 )
+
+[node name="SFX" type="Node2D" parent="." groups=["sfx"]]
+
+[node name="1" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 15 )
+
+[node name="2" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 16 )
+
+[node name="3" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 17 )
+
+[node name="4" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 18 )
+
+[node name="5" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 19 )
+
+[node name="6" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 20 )
+
+[node name="7" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 21 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
